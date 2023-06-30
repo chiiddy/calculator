@@ -1,10 +1,16 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 
 // this is a middleware
 app.use(express.json())
 
 const result = []
+
+app.get("", (( request, response,next ) => {
+    const dir = path.join(__dirname + "/public/index.html")
+    return response.sendFile(dir)
+}));
 
 app.get("/getAll", ((request, response) => {
     response.json({result})
